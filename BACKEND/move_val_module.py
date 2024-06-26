@@ -25,7 +25,7 @@ class move_val_class:
                     valid = True
                 elif start_row == (1 if direction == 1 else 6) and start_row + 2 * direction == end_row and self.board[end_row][end_col] == '.' and self.board[start_row + direction][start_col] == '.':
                     valid = True
-            elif abs(start_col - end_col) == 1 and start_row + direction == end_row and self.can_capture(start, end):
+            elif abs(start_col - end_col) == 1 and start_row + direction == end_row and self.is_capture(start, end):
                 valid = True
         elif piece_type == 'r':
             if start_row == end_row or start_col == end_col:
@@ -54,9 +54,9 @@ class move_val_class:
                 valid = True
         elif piece_type == 'q':
             if start_row == end_row or start_col == end_col:
-                return self.move_validation(start, end, 'r')
+                return self.is_valid_move(start, end, 'r')
             elif abs(start_row - end_row) == abs(start_col - end_col):
-                return self.move_validation(start, end, 'b')
+                return self.is_valid_move(start, end, 'b')
         elif piece_type == 'k':
             if abs(start_row - end_row) <= 1 and abs(start_col - end_col) <= 1:
                 valid = True

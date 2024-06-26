@@ -4,7 +4,6 @@ class capture_class:
         end_row, end_col = end
         start_piece = self.board[start_row][start_col]
         end_piece = self.board[end_row][end_col]
-        # Check if there is an opposing piece to capture
         if start_piece.isupper() and end_piece.islower():
             return True
         if start_piece.islower() and end_piece.isupper():
@@ -17,10 +16,11 @@ class capture_class:
             for col in range(8):
                 piece = self.board[row][col]
                 if piece != ".":
-                    moves = self.all_possible_captures(row, col)
-                    for move in moves:
-                        if self.is_capture((row, col), move):
-                            captures.append(((row, col), move))
+                    if (self.player_1 == "White" and piece.isupper()) or (self.player_1 == "Black" and piece.islower()):
+                        moves = self.all_possible_captures(row, col)
+                        for move in moves:
+                            if self.is_capture((row, col), move):
+                                captures.append(((row, col), move))
         return captures
 
     def all_possible_captures(self, row, col):

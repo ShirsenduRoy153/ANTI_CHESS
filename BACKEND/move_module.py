@@ -1,6 +1,5 @@
 class move_class:
     def parse_move(self, move):
-        # Convert move like "A2 B3" to board indices
         try:
             start, end = move.split()
             start_col = ord(start[0].lower()) - ord('a')
